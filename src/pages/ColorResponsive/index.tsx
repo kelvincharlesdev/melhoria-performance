@@ -20,20 +20,26 @@ const breakpoints: number[] = [
 ]
 
 export const ColorResponsive = () => {
-  const [color, setColor] = useState('')
+  const [color, setColor] = useState(() => {
+    const width = window.innerWidth
+    const index = breakpoints.findIndex((breakpoint) => width < breakpoint)
+    const breakpointIndex = index === -1 ? 0 : index
+    return colors[breakpointIndex]
+  })
+
+  const alteraCor = () => {
+    const width = window.innerWidth
+    const index = breakpoints.findIndex((breakpoint) => width < breakpoint)
+    const breakpointIndex = index === -1 ? 0 : index
+    const indexBreakpoints = colors[breakpointIndex]
+    // setColor(colors[breakpointIndex])
+
+    if (color !== indexBreakpoints) {
+      setColor(colors[breakpointIndex])
+    }
+  }
 
   useEffect(() => {
-    const alteraCor = () => {
-      const width = window.innerWidth
-      const index = breakpoints.findIndex((breakpoint) => width < breakpoint)
-      const breakpointIndex = index === -1 ? 0 : index
-      setColor(colors[breakpointIndex])
-
-      if (color !== colors[breakpointIndex]) {
-        setColor(colors[breakpointIndex])
-      }
-    }
-
     alteraCor()
     window.addEventListener('resize', alteraCor)
     return () => {

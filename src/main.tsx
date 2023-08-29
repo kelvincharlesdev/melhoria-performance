@@ -8,11 +8,11 @@ import Chat from './pages/Chat';
 import { ColorResponsive } from './pages/ColorResponsive';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    // <CampoDeBusca />
+    <CampoDeBusca />
     // <Chat />
     // <ColorResponsive />
     // <ContadorComErros />
     // <ListKeys />
-    <MarketPlace/>
+    // <MarketPlace/>
 
 )

@@ -20,7 +20,9 @@ Analisar todo projeto que contem 6 páginas  e identificar e efetuar possíveis 
 
 > ### Page 03: ColorResponsive
 
-      Nessa página  percebi que sempre  que a página  mudava de tamanho as cores eram renderizadas duas vezes, causando re renderização desnecessária, para resolver usei um if para verificar se a cor do estado atual é diferente da cor do breakpoint atual se houver diferença ele atualiza para ficarem iguais. se for igual ele nao faz nenhuma ação assim evita qualquer re renderização desnecessária
+      Nessa página  percebi que sempre  que a página  mudava de tamanho as cores eram renderizadas duas vezes, causando re renderização desnecessária, para resolver:
+      - Usei a mesma lógica passada na função aletrarCor para evitar que sempre que a página for carregada ele iniciasse com duas renderizações
+      - Usei um if para verificar se a cor do estado atual é diferente da cor do breakpoint atual se houver diferença ele atualiza para ficarem iguais. se for igual ele nao faz nenhuma ação assim evita qualquer re renderização desnecessária
 
 > ### Page 04: ContadorComErros
 
