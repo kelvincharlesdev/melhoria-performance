@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { classNames } from "../../helpers/classNames";
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { classNames } from '../../helpers/classNames'
+import { useDebounce } from '../../hooks/useDebounce'
 
 const colors: string[] = [
   'bg-gray-600',
@@ -13,50 +14,47 @@ const colors: string[] = [
   'bg-fuchsia-600',
   'bg-pink-600',
   'bg-rose-600',
-];
+]
 const breakpoints: number[] = [
-  500,
-  600,
-  700,
-  800,
-  900,
-  1000,
-  1100,
-  1200,
-  1300,
-  1400,
-  1500,
-];
+  500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500,
+]
 
 export const ColorResponsive = () => {
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState('')
 
   useEffect(() => {
     const alteraCor = () => {
-      const width = window.innerWidth;
-      const index = breakpoints.findIndex(breakpoint => width < breakpoint);
-      const breakpointIndex = index === -1 ? 0 : index;
-      setColor(colors[breakpointIndex]);
+      const width = window.innerWidth
+      const index = breakpoints.findIndex((breakpoint) => width < breakpoint)
+      const breakpointIndex = index === -1 ? 0 : index
+      setColor(colors[breakpointIndex])
+
+      if (color !== colors[breakpointIndex]) {
+        setColor(colors[breakpointIndex])
+      }
     }
 
-    alteraCor();
-    window.addEventListener('resize', alteraCor);
+    alteraCor()
+    window.addEventListener('resize', alteraCor)
     return () => {
-      window.removeEventListener('resize', alteraCor);
+      window.removeEventListener('resize', alteraCor)
     }
-  }, []);
+  }, [color])
+
+  const corAtual = useMemo(() => color, [color])
 
   console.log('==== re-render')
+
   return (
-    <div className={
-      classNames(
-        color,
+    <div
+      className={classNames(
+        corAtual,
         'flex items-center justify-center w-screen h-screen bg-'
-      )
-    }>
-      <p className="text-5xl text-white md:text-7xl lg:text-9xl">
-        { color.replace('bg-', '').replace('-600', '') }
+      )}
+    >
+      <p className='text-5xl text-white md:text-7xl lg:text-9xl'>
+        {corAtual.replace('bg-', '').replace('-600', '')}
       </p>
     </div>
-  );
+  )
 }

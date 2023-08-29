@@ -1,12 +1,12 @@
-import { Pessoa } from "../../types/Pessoa";
-import { Carregando } from "../Carregando";
-import { ListaPessoas } from "../ListaPessoas";
-import { ResultadosNaoEncontrados } from "../ResultadosNaoEncontrados";
+import { Pessoa } from '../../types/Pessoa'
+import { Carregando } from '../Carregando'
+import { ListaPessoas } from '../ListaPessoas'
+import { ResultadosNaoEncontrados } from '../ResultadosNaoEncontrados'
 
 type ComboboxItensProps = {
-  query: string;
+  query: string
   loading: boolean
-  pessoas: Pessoa[],
+  pessoas: Pessoa[]
 }
 
 export const ComboboxItens: React.FC<ComboboxItensProps> = ({
@@ -19,10 +19,8 @@ export const ComboboxItens: React.FC<ComboboxItensProps> = ({
   }
 
   if (query && pessoas.length === 0) {
-    <ResultadosNaoEncontrados />
+    ;<ResultadosNaoEncontrados />
   }
 
-  return (
-    <ListaPessoas pessoas={pessoas} />
-  )
-};
+  return <ListaPessoas pessoas={pessoas} />
+}
